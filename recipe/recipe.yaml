@@ -1,5 +1,5 @@
 context:
-  version: "0.4.6"
+  version: "0.5.1"
 
 recipe:
   name: patinae
@@ -7,10 +7,10 @@ recipe:
 
 source:
   url: https://github.com/zmactep/patinae/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: ba6a6752dc73c31b22ca560fa1bb1b39407982902397a3eff33a387c1d18a1c9
+  sha256: b03f70d23f3d9d64e2a6c76aa75fb0d8a4f5d9738baa29deca2c1d1fa26c204f
 
 build:
-  number: 1
+  number: 0
   variant:
     ignore_keys:
       - nodejs # Only needed to build static web assets.
