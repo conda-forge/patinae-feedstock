@@ -7,6 +7,7 @@
       "description": "A fast, programmable molecular viewer for research, scripting, and the web",
       "icon": "{{ MENU_DIR }}/patinae.{{ ICON_EXT }}",
       "command": ["{{ BIN_DIR }}/patinae"],
+      "activate": true,
       "platforms": {
         "linux": {
           "Categories": ["Education", "Science"],
