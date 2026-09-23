@@ -24,11 +24,15 @@ outputs:
         - ${{ compiler('rust') }}
         - ${{ stdlib('c') }}
         - ${{ 'm2w64-jq' if win else 'jq' }}
+        - ${{ 'make' if osx }}
+        - if: build_platform != target_platform
+          then:
+            - cross-python_${{ target_platform }}
+            - maturin >=1.2.2,<2
+            - python
         - cargo-auditable
         - cargo-bundle-licenses
         - esbuild ==0.25.12
-        - if: osx
-          then: make
         - nodejs
         - pkg-config
         - pnpm
