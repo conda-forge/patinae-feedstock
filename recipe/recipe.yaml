@@ -10,7 +10,7 @@ source:
   sha256: b03f70d23f3d9d64e2a6c76aa75fb0d8a4f5d9738baa29deca2c1d1fa26c204f
 
 build:
-  number: 0
+  number: 1
   variant:
     ignore_keys:
       - nodejs # Only needed to build static web assets.
