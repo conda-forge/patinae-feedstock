@@ -44,6 +44,7 @@ outputs:
         # wasm-bindgen, this pin must be updated accordingly.
         - wasm-bindgen-cli ==0.2.114
       host:
+        - ${{ "libpython" if unix }}
         - expat
         - fontconfig
         - freetype
