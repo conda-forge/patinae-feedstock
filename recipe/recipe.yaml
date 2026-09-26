@@ -81,6 +81,9 @@ outputs:
             - Scripts/patinae-cli.bat
             - Lib/site-packages/patinae/**
             - Lib/site-packages/patinae-*.dist-info/**
+            # Windows Python 3.15+ uses lib/python/site-packages.
+            - lib/python/site-packages/patinae/**
+            - lib/python/site-packages/patinae-*.dist-info/**
     requirements:
       run:
         - anywidget >=0.9
