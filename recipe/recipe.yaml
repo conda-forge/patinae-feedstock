@@ -62,6 +62,8 @@ outputs:
         env:
           # PKG_VERSION isn't set for this output, so pass version manually.
           PATINAE_VERSION: ${{ version }}
+          # Use the stable ABI for Python 3.15 with PyO3 0.27.2.
+          PYO3_USE_ABI3_FORWARD_COMPATIBILITY: ${{ "1" if match(python, "3.15.*") else "0" }}
 
   - package:
       name: python-patinae
@@ -83,6 +85,7 @@ outputs:
         - anywidget >=0.9
         - python
         - traitlets >=5
+        - wcwidth <0.9.1  # 0.9.1 is incorrectly marked noarch despite containing a linux-x86_64 wheel.
     tests:
       - python:
           pip_check: true
