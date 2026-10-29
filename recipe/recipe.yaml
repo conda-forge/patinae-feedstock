@@ -1,5 +1,5 @@
 context:
-  version: "0.5.1"
+  version: "0.5.3"
 
 recipe:
   name: patinae
@@ -7,10 +7,12 @@ recipe:
 
 source:
   url: https://github.com/zmactep/patinae/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: b03f70d23f3d9d64e2a6c76aa75fb0d8a4f5d9738baa29deca2c1d1fa26c204f
+  sha256: 14b36c4b4ebf7a3b8013683fd9d3aedc71d5399fc531a3933700f793e0a08668
 
 build:
-  number: 1
+  number: 0
+  # Upstream PyO3 0.27 and Python metadata support Python only through 3.14.
+  skip: match(python, ">=3.15")
   variant:
     ignore_keys:
       - nodejs # Only needed to build static web assets.
@@ -42,7 +44,7 @@ outputs:
         # wasm-bindgen requires the CLI schema version to exactly match the
         # version used to compile the Wasm file. If upstream bumps
         # wasm-bindgen, this pin must be updated accordingly.
-        - wasm-bindgen-cli ==0.2.114
+        - wasm-bindgen-cli ==0.2.129
       host:
         - ${{ "libpython" if unix }}
         - expat
@@ -63,8 +65,6 @@ outputs:
         env:
           # PKG_VERSION isn't set for this output, so pass version manually.
           PATINAE_VERSION: ${{ version }}
-          # Use the stable ABI for Python 3.15 with PyO3 0.27.2.
-          PYO3_USE_ABI3_FORWARD_COMPATIBILITY: ${{ "1" if match(python, "3.15.*") else "0" }}
 
   - package:
       name: python-patinae
@@ -81,13 +81,10 @@ outputs:
             - Scripts/patinae-cli.bat
             - Lib/site-packages/patinae/**
             - Lib/site-packages/patinae-*.dist-info/**
-            # Windows Python 3.15+ uses lib/python/site-packages.
-            - lib/python/site-packages/patinae/**
-            - lib/python/site-packages/patinae-*.dist-info/**
     requirements:
       run:
         - anywidget >=0.9
-        - python
+        - python >=3.8,<3.15
         - traitlets >=5
         - wcwidth <0.9.1  # 0.9.1 is incorrectly marked noarch despite containing a linux-x86_64 wheel.
     tests:
