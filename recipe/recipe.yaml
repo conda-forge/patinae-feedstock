@@ -1,5 +1,5 @@
 context:
-  version: "0.5.3"
+  version: "0.5.4"
 
 recipe:
   name: patinae
@@ -7,7 +7,7 @@ recipe:
 
 source:
   url: https://github.com/zmactep/patinae/archive/refs/tags/v${{ version }}.tar.gz
-  sha256: 14b36c4b4ebf7a3b8013683fd9d3aedc71d5399fc531a3933700f793e0a08668
+  sha256: 42c023a4428dfab8d0b3f8c1cd046954f25ec75bcbfd7596655621b63f78e094
 
 build:
   number: 0
